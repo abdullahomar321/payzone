@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+      - export PATH="$PATH:`pwd`/flutter/bin"
+      - flutter doctor
+  pre_build:
+    commands:
+      - flutter pub get
+  build:
+    commands:
+      - flutter build web --release
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build/web
